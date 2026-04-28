@@ -63,7 +63,5 @@ docker compose down -v
 ---
 
 **Note**: Make sure you have Docker and Docker Compose installed before running the above commands.
-```
-
 ---
 
