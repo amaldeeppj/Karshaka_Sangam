@@ -1,0 +1,96 @@
+# =============================================
+# Python & Virtual Environment
+# =============================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Virtualenv from builder stage
+/opt/venv
+
+# =============================================
+# Git and Version Control
+# =============================================
+.git
+.gitignore
+.gitattributes
+
+# =============================================
+# IDE / Editor files
+# =============================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# =============================================
+# Environment & Secrets
+# =============================================
+.env
+.env.local
+.env.*.local
+*.env
+
+# =============================================
+# Docker & Compose
+# =============================================
+docker-compose.override.yml
+Dockerfile.*
+.docker/
+docker-compose.*
+
+# =============================================
+# Logs, temp & data
+# =============================================
+*.log
+logs/
+*.pid
+tmp/
+temp/
+data/
+*.db
+*.sqlite3
+
+# =============================================
+# OS generated files
+# =============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# =============================================
+# Testing & Coverage
+# =============================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# =============================================
+# Build artifacts
+# =============================================
+build/
+dist/
+*.egg-info/
+.eggs/
+*.whl
+
+# =============================================
+# Misc
+# =============================================
+README.md
+LICENSE

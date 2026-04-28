@@ -1,0 +1,101 @@
+# =============================================
+# Python
+# =============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# =============================================
+# Docker
+# =============================================
+Dockerfile.*
+.docker/
+docker-compose.override.yml
+
+# =============================================
+# Environment variables & Secrets
+# =============================================
+.env
+.env.local
+.env.*.local
+*.env
+.secrets
+
+# =============================================
+# IDE and Editor
+# =============================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# =============================================
+# Logs and temporary files
+# =============================================
+*.log
+logs/
+*.pid
+*.seed
+tmp/
+temp/
+
+# =============================================
+# Testing
+# =============================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache
+
+# =============================================
+# Database & Data
+# =============================================
+*.db
+*.sqlite3
+data/
+mongo_data/
+
+# =============================================
+# Build artifacts
+# =============================================
+*.whl
+*.tar.gz
+
+# =============================================
+# Misc
+# =============================================
+__pycache__/
+*.mo
+*.pot

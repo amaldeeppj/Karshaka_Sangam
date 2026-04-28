@@ -1,0 +1,69 @@
+# =============================================
+# Stage 1: Builder
+# =============================================
+FROM python:3.12-slim AS builder
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+# Install system dependencies required for building packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create and set working directory
+WORKDIR /app
+
+# Copy requirements first to leverage Docker cache
+COPY requirements.txt .
+
+# Install dependencies in a virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# =============================================
+# Stage 2: Runtime (Final Image)
+# =============================================
+FROM python:3.12-slim AS runtime
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PATH="/opt/venv/bin:$PATH"
+
+# Install runtime dependencies (if needed)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN useradd -m -r -u 1001 appuser
+
+# Create working directory
+WORKDIR /app
+
+# Copy virtual environment from builder stage
+COPY --from=builder /opt/venv /opt/venv
+
+# Copy application code
+COPY . .
+
+# Change ownership to appuser
+RUN chown -R appuser:appuser /app
+
+# Switch to non-root user
+USER appuser
+
+# Expose the port your app runs on
+EXPOSE 5000
+
+CMD ["python", "seed_data.py"]
+
+# Run the application
+ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+
